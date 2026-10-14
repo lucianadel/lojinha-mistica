@@ -1,18 +1,15 @@
-# Reutilizar a página de vendas
+﻿# Configurar as ofertas da Lojinha Mística
 
-1. Duplique `pagina-vendas-template.html` na mesma pasta. Use um nome como `baralho-7-dias.html` para preservar os caminhos de `style.css`, `script.js` e `imagens/`.
-2. Troque o `<title>`, a meta description, o nome do produto, a promessa principal, o público-alvo, os benefícios, os capítulos e o FAQ pelo conteúdo do novo e-book. Atualize também a oferta nas duas seções de compra.
-3. Substitua o caminho da capa por um arquivo real de `imagens/` e ajuste o `alt`. A capa principal usa carregamento prioritário por estar na primeira tela.
-4. Atualize o preço em todas as ocorrências. A landing page atual usa R$ 29,90, seguindo o preço da vitrine.
-5. Configure o checkout por uma das opções abaixo. Use a mesma URL nos dois CTAs da página.
+A aparência, os filtros, os modais e a sacola são preservados. O cadastro das ofertas é centralizado no início de `script.js`.
 
-## Configuração dos links
+## Onde cadastrar preços e links
 
-**Por página:** substitua todos os `https://pay.kiwify.com.br/SEU_LINK_AQUI` pela URL final da Kiwify. Remova `data-checkout` dos CTAs se quiser que os links sejam controlados somente pelo HTML.
+- **`CHECKOUT_URLS`**: cole o checkout individual oficial da Hotmart entre as aspas da chave correspondente. Deixe `''` enquanto o link não existir.
+- **`PRODUCT_PRICES`**: informe o preço inteiro em **centavos** na mesma chave. `12000` significa R$ 120,00. Deixe `null` enquanto o preço não estiver definido.
 
-**Centralizada:** preencha `CHECKOUT_URLS` em `script.js` e use a chave correspondente em `data-checkout` nos CTAs. Uma URL HTTPS válida configurada no JavaScript substitui o `href` do HTML. Se a configuração estiver vazia, o `href` permanece. Atualize também os marcadores do HTML para funcionar quando JavaScript estiver desativado.
+Um produto só fica disponível quando tem preço válido e checkout HTTPS de `pay.hotmart.com`. A configuração atualiza automaticamente os cards, os modais, a landing page e a sacola. Não é necessário editar valores no HTML.
 
-| Produto | Chave `data-checkout` |
+| Produto | Chave nos dois objetos |
 | --- | --- |
 | Interpretação de Sonhos | `sonhos` |
 | Baralho Cigano em 7 Dias | `baralho-7dias` |
@@ -21,16 +18,26 @@
 | Rituais de Umbanda | `rituais-umbanda` |
 | Proteção Diária | `protecao-diaria` |
 
-Para adicionar um produto, crie uma nova chave no objeto `CHECKOUT_URLS` e use-a em todos os CTAs desse produto. Ao duplicar a página, não mantenha a chave `curso-baralho` em um produto diferente, pois isso poderá encaminhar a compra para o checkout errado.
+Sonhos permanece com preço `12000` e checkout `https://pay.hotmart.com/U108029098A`. Os demais produtos têm preço `null` e link vazio. Produtos sem preço mostram **Preço em breve**; produtos sem oferta completa mostram **Em breve**, sem redirecionamento ou adição à sacola.
 
-## Conferência antes de publicar
+## WhatsApp
 
-- Os PDFs não foram fornecidos: a descrição dos capítulos e os benefícios são uma proposta editorial baseada nos textos existentes da vitrine. Confira cada item com o material real e ajuste os títulos do índice.
-- A oferta atual é de um PDF. Confirme se não há outros formatos, aulas, suporte ou condições que devam ser informados.
-- A entrega imediata anunciada ocorre após confirmação do pagamento. Configure a entrega e a garantia incondicional de 7 dias na oferta correspondente.
-- Complete a apresentação da autora apenas com informações verificadas. Nenhuma formação, número de clientes ou depoimento foi inventado.
-- Revise os termos e avisos do rodapé com as condições reais da oferta.
-- Substitua todos os marcadores `SEU_LINK_AQUI` antes de publicar. Eles são links de demonstração, não checkouts válidos.
-- Na vitrine, o modal do Curso Completo já aponta para a landing page. Para outros produtos, adicione um link semelhante no modal correspondente.
+`WHATSAPP_NUMBER` está configurado como `5521990669549`. A mensagem é montada no JavaScript com `encodeURIComponent()`. O botão abre a conversa preenchida; o envio é feito pela visitante.
 
-As sanfonas de conteúdo e FAQ usam `<details>` e `<summary>` e funcionam sem JavaScript. O `script.js` é compartilhado para configurar os links; a busca e os modais continuam específicos da vitrine.
+## Sacola e pagamento
+
+A sacola salva IDs e quantidades no navegador, sem confiar em preços gravados no armazenamento. Ofertas indisponíveis são removidas da seleção salva. Os controles + e − ajustam de 1 a 99 unidades; o contador e o total acompanham as alterações.
+
+Cada e-book é pago separadamente na Hotmart. Com uma única unidade, a finalização abre o checkout do produto. Com mais unidades ou produtos, apresenta um link por unidade. Não existe cobrança unificada. A sacola não é apagada ao abrir o checkout, pois não recebe a confirmação do pagamento.
+
+## Duplicar a landing page
+
+1. Duplique `pagina-vendas-template.html` na mesma pasta para preservar os caminhos de CSS, JavaScript e imagens.
+2. Troque título, descrição, capa e `alt`, público, benefícios, capítulos e FAQ pelo conteúdo real do e-book.
+3. Troque `curso-baralho` pela chave correta em **todos** os atributos `data-product-price` e `data-checkout` da página.
+4. Cadastre preço e checkout somente nos objetos de `script.js`. Para produtos novos, acrescente a mesma chave nos dois objetos.
+5. Confira os capítulos e a apresentação da autora com os materiais reais antes de publicar. Não acrescente formação, depoimentos ou resultados sem comprovação.
+
+Na vitrine, novos cards precisam de `data-product-id` e botões `data-add-to-cart` com a mesma chave. Os valores usam `data-product-price`; as compras usam `data-checkout` e `data-checkout-label` para o texto do CTA ativo.
+
+Os HTMLs mantêm estados seguros sem JavaScript: as ofertas pendentes não têm links e Sonhos preserva seu checkout conhecido. O cadastro automático e a sacola exigem JavaScript. A entrega digital é liberada após confirmação do pagamento; a garantia anunciada é de 7 dias.

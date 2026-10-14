@@ -12,11 +12,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
-<!-- MODELO: instruções de duplicação em COMO-USAR-PAGINA-VENDAS.md.
-     KIWIFY: substituir todos os href https://pay.kiwify.com.br/SEU_LINK_AQUI.
-     data-checkout="curso-baralho" usa a configuração desse produto no script.js.
-     Ao duplicar para outro e-book, trocar essa chave em TODOS os CTAs.
-     Validar o resumo dos capítulos e as condições da oferta com o PDF e checkout finais. -->
+<!-- HOTMART: cadastrar o link em CHECKOUT_URLS e o preço em PRODUCT_PRICES no script.js. -->
 <body class="sales-page">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <header class="sales-nav container">
@@ -35,9 +31,9 @@
                     <li>Combinações e tiragens</li>
                     <li>Postura ética no atendimento</li>
                 </ul>
-                <p class="sales-price">Seu próximo passo no estudo das cartas por <strong>R$ 29,90</strong></p>
-                <!-- KIWIFY: substituir SEU_LINK_AQUI pelo checkout do produto. -->
-                <a class="btn-buy sales-cta" data-checkout="curso-baralho" href="https://pay.kiwify.com.br/SEU_LINK_AQUI" target="_blank" rel="noopener noreferrer">Garantir Meu E-book Agora</a>
+                <p class="sales-price">Seu próximo passo no estudo das cartas · <strong data-product-price="curso-baralho">Preço em breve</strong></p>
+                <!-- HOTMART: cadastrar o link em CHECKOUT_URLS e o preço em PRODUCT_PRICES no script.js. -->
+                <a class="btn-buy sales-cta" data-checkout="curso-baralho" target="_blank" rel="noopener noreferrer" data-checkout-label="Garantir Meu E-book Agora" aria-disabled="true" title="Oferta em breve">Em breve</a>
                 <p class="cta-note">Acesso Imediato no E-mail após a confirmação do pagamento.<br>Garantia Incondicional de 7 Dias.</p>
             </div>
             <figure class="book-showcase">
@@ -117,9 +113,9 @@
                 <p class="eyebrow">Seu estudo começa com um próximo passo</p>
                 <h2 id="offer-title">Leve o Curso Completo de Baralho Cigano para sua rotina.</h2>
                 <p>Um guia para conhecer as cartas, explorar combinações e retomar o conteúdo sempre que precisar.</p>
-                <p class="sales-price">E-book em PDF · <strong>R$ 29,90</strong></p>
-                <!-- KIWIFY: usar o mesmo checkout do CTA principal. -->
-                <a class="btn-buy sales-cta" data-checkout="curso-baralho" href="https://pay.kiwify.com.br/SEU_LINK_AQUI" target="_blank" rel="noopener noreferrer">Garantir Meu E-book Agora</a>
+                <p class="sales-price">E-book em PDF · <strong data-product-price="curso-baralho">Preço em breve</strong></p>
+                <!-- HOTMART: cadastrar o link em CHECKOUT_URLS e o preço em PRODUCT_PRICES no script.js. -->
+                <a class="btn-buy sales-cta" data-checkout="curso-baralho" target="_blank" rel="noopener noreferrer" data-checkout-label="Garantir Meu E-book Agora" aria-disabled="true" title="Oferta em breve">Em breve</a>
                 <p class="cta-note">Acesso Imediato no E-mail após confirmação do pagamento.<br>Garantia Incondicional de 7 Dias.</p>
             </div>
         </section>
@@ -131,7 +127,7 @@
             <section id="termos" class="legal-section" aria-labelledby="terms-title"><h2 id="terms-title">Termos de uso</h2><p>A compra dá acesso a um material digital em PDF para uso pessoal. A reprodução, redistribuição ou revenda sem autorização da autora não é permitida. O preço final, as opções de pagamento e os dados da compra são apresentados no checkout. A garantia anunciada nesta página é de 7 dias.</p></section>
             <section id="avisos" class="legal-section" aria-labelledby="legal-title"><h2 id="legal-title">Avisos legais</h2><p>Conteúdo destinado ao estudo de cartomancia e espiritualidade. O aprendizado depende da dedicação e da prática de cada pessoa; não há promessa de resultados financeiros, previsões infalíveis ou transformação garantida. Leituras espirituais não substituem orientação profissional de saúde, jurídica ou financeira.</p></section>
             <p>&copy; 2026 Escola Cartomante da Luz · Mariah Cartomante. Todos os direitos reservados.</p>
-            <p class="sub-footer">Pagamento e entrega digital via Kiwify.</p>
+            <p class="sub-footer">Pagamento e entrega digital via Hotmart.</p>
         </div>
     </footer>
 </body>
